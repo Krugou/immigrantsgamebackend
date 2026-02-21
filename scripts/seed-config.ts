@@ -23,27 +23,45 @@ initializeApp({
 
 const db = getFirestore();
 
-const TERRITORY_TYPES = [
-  'rural',
-  'suburbs',
-  'urban',
-  'metropolis',
-  'border',
-  'coastal',
-  'caves',
-  'underground',
-  'mountains',
-  'desert',
-  'arctic',
-  'moon',
-  'orbital',
-  'spaceStation',
-  'interstellar',
-  'milestone',
+// localized items include an English and Finnish label
+interface LocalizedItem {
+  key: string;
+  en: string;
+  fi: string;
+}
+
+const TERRITORY_TYPES: LocalizedItem[] = [
+  { key: 'rural', en: 'Rural', fi: 'Maaseutu' },
+  { key: 'suburbs', en: 'Suburbs', fi: 'Esikaupunkialue' },
+  { key: 'urban', en: 'Urban Center', fi: 'Keskusta' },
+  { key: 'metropolis', en: 'Metropolis', fi: 'Metropoli' },
+  { key: 'border', en: 'Border Town', fi: 'Rajakaupunki' },
+  { key: 'coastal', en: 'Coastal Port', fi: 'Rannikkosatama' },
+  { key: 'caves', en: 'Cave Network', fi: 'Luolaverkosto' },
+  { key: 'underground', en: 'Underground City', fi: 'Maanalainen kaupunki' },
+  { key: 'mountains', en: 'Mountain Settlement', fi: 'Vuoristokylä' },
+  { key: 'desert', en: 'Desert Outpost', fi: 'Aavikkopartioasema' },
+  { key: 'arctic', en: 'Arctic Base', fi: 'Arktinen tukikohta' },
+  { key: 'moon', en: 'Lunar Colony', fi: 'Kuun siirtokunta' },
+  { key: 'orbital', en: 'Orbital Platform', fi: 'Maanlentoalusta' },
+  { key: 'spaceStation', en: 'Space Station Alpha', fi: 'Avaruusasema Alfa' },
+  { key: 'interstellar', en: 'Interstellar Ark', fi: 'Tähtienvälinen arkki' },
+  { key: 'milestone', en: 'Milestone', fi: 'Virstanpylväs' },
 ];
 
-const EVENT_TYPES = ['immigration', 'emigration', 'disaster', 'opportunity', 'milestone'];
-const CATEGORIES = ['opportunity', 'disaster', 'milestone', 'neutral'];
+const EVENT_TYPES: LocalizedItem[] = [
+  { key: 'immigration', en: 'Immigration', fi: 'Maahanmuutto' },
+  { key: 'emigration', en: 'Emigration', fi: 'Muutto ulkomaille' },
+  { key: 'disaster', en: 'Disaster', fi: 'Kaatastrofi' },
+  { key: 'opportunity', en: 'Opportunity', fi: 'Mahdollisuus' },
+  { key: 'milestone', en: 'Milestone', fi: 'Virstanpylväs' },
+];
+const CATEGORIES: LocalizedItem[] = [
+  { key: 'opportunity', en: 'Opportunity', fi: 'Mahdollisuus' },
+  { key: 'disaster', en: 'Disaster', fi: 'Kaatastrofi' },
+  { key: 'milestone', en: 'Milestone', fi: 'Virstanpylväs' },
+  { key: 'neutral', en: 'Neutral', fi: 'Neutraali' },
+];
 
 const seed = async () => {
   console.log('Seeding system configuration...');
