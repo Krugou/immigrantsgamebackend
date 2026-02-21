@@ -39,3 +39,28 @@ const TERRITORY_TYPES = [
   'orbital',
   'spaceStation',
   'interstellar',
+  'milestone',
+];
+
+const EVENT_TYPES = ['immigration', 'emigration', 'disaster', 'opportunity', 'milestone'];
+const CATEGORIES = ['opportunity', 'disaster', 'milestone', 'neutral'];
+
+const seed = async () => {
+  console.log('Seeding system configuration...');
+  try {
+    await db.collection('config').doc('metadata').set({
+      territoryTypes: TERRITORY_TYPES,
+      eventTypes: EVENT_TYPES,
+      categories: CATEGORIES,
+      updatedAt: Date.now(),
+      seededAt: Date.now(),
+    });
+    console.log('✅ Configuration seeded successfully.');
+  } catch (error) {
+    console.error('❌ Error seeding config:', error);
+  } finally {
+    process.exit();
+  }
+};
+
+seed();
