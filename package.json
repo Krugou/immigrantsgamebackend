@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint --ext .ts .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "echo \"No backend tests configured\" && exit 0"
+    "test": "vitest --config=vitest.config.ts --run"
   },
   "dependencies": {
     "express": "^5.2.1",
@@ -22,8 +22,6 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -33,11 +31,14 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.3.0",
     "depcheck": "^1.4.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "semantic-release": "^25.0.3",
     "sharp": "^0.34.5",
     "ts-node": "^10.9.2",
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "vitest": "^0.34.6"
   }
 }

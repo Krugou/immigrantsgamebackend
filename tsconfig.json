@@ -1,0 +1,14 @@
+{
+  "extends": "../frontend/tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist",
+    "types": [
+      "node",
+      "vitest"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}
