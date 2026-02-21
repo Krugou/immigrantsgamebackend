@@ -12,6 +12,19 @@ const SERVICE_ACCOUNT_PATH = path.join(
 export const initFirebase = () => {
   if (admin.apps.length) return;
 
+  // emulator override (does not require credentials)
+  if (process.env.FIRESTORE_EMULATOR_HOST) {
+    const projectId =
+      process.env.FIREBASE_PROJECT_ID ||
+      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ||
+      'local-emulator';
+    admin.initializeApp({ projectId });
+    console.log(
+      `Firebase admin initialized against emulator (${process.env.FIRESTORE_EMULATOR_HOST}) with projectId=${projectId}`,
+    );
+    return;
+  }
+
   // 1. Try local service account file in backend/
   if (fs.existsSync(SERVICE_ACCOUNT_PATH)) {
     const serviceAccount = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_PATH, 'utf8')) as Record<
