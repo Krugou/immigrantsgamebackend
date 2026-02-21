@@ -10,7 +10,10 @@
     "dev:https": "tsx server.ts --https",
     "start": "cross-env NODE_ENV=production tsx server.ts",
     "start:https": "cross-env NODE_ENV=production tsx server.ts --https",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "echo \"No backend tests configured\" && exit 0"
   },
   "dependencies": {
     "express": "^5.2.1",
