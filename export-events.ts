@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { initFirebase, getDb } from './firebase.js';
+import logger from './logger';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = path.join(__dirname, '..', 'events-export.md');
@@ -91,11 +92,11 @@ const run = async () => {
 
   const md = lines.join('\n');
   fs.writeFileSync(OUTPUT_PATH, md, 'utf8');
-  console.log(`✅ Exported ${lines.length} lines to ${OUTPUT_PATH}`);
+  logger.info(`✅ Exported ${lines.length} lines to ${OUTPUT_PATH}`);
   process.exit(0);
 };
 
 run().catch((err) => {
-  console.error('Export failed:', err);
+  logger.error('Export failed:', err);
   process.exit(1);
 });

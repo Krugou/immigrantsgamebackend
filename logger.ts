@@ -1,3 +1,22 @@
+import { createLogger, format, transports } from 'winston';
+
+const { combine, timestamp, printf, colorize, json } = format;
+
+const devFormatter = printf(({ level, message, timestamp, ...meta }) => {
+  const rest = Object.keys(meta).length ? ` ${JSON.stringify(meta)}` : '';
+  return `${timestamp} ${level}: ${message}${rest}`;
+});
+
+const logger = createLogger({
+  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+  format:
+    process.env.NODE_ENV === 'production'
+      ? combine(timestamp(), json())
+      : combine(colorize(), timestamp(), devFormatter),
+  transports: [new transports.Console()],
+});
+
+export default logger;
 import fs from 'fs';
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
